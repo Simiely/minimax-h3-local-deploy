@@ -44,6 +44,10 @@
 - 根因：ComfyUI 默认开启主机内存页锁定（pinned memory），与权重的主机副本争夺内存；实测文本编码器与 transformer 会**同时**驻留系统内存（编码器加载后约 24 GiB、transformer 后约 45.6 GiB）
 - 解决：启动加 `--disable-pinned-memory`；判断是否生效 → 看启动日志里**有没有** `Enabled pinned memory` 这一行（有则标志没生效）。加 swap 无效（pinned 页不可换出）
 - 预防：32 GB 内存是这条路线的下限，64 GB 才是舒适区；别用 `--disable-smart-memory` / `--high-ram` 去治这个病，只会更糟
+- **2026-09-30 更新**：这条的「同时驻留 45.6 GiB」口径在 **ComfyUI 0.37 上已不成立** ——
+  新版对权重做 dynamic VRAM loading / 分段暂存，配合 `--disable-pinned-memory`，
+  实测跑路线 B（864×480 / 124 帧 / 20 步）系统内存峰值只有 **22.7 GiB**（64 GB 机器）。
+  详见 [`docs/实测-路线B-4070TiSuper16G.md`](docs/实测-路线B-4070TiSuper16G.md)。数字会随版本变，升级后重测
 
 ### 问题：生成异常慢，慢约 3 倍，且没有任何报错
 

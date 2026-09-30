@@ -38,6 +38,10 @@
 
 决策树与完整对比见 [`docs/使用指南.md`](docs/使用指南.md)。
 
+> **本机实测（2026-09-30）**：4070 Ti SUPER 16G + 64 GB 内存，路线 B，864×480 / 124 帧 / 20 步
+> = **3 分 13 秒/条**，显存峰值 15.2/16 GiB，系统内存峰值仅 22.7 GiB（远低于社区流传的 45.6 GiB ——
+> ComfyUI 0.37 的动态显存加载已改变这个结论）。详见 [`docs/实测-路线B-4070TiSuper16G.md`](docs/实测-路线B-4070TiSuper16G.md)。
+
 ## 快速开始
 
 **1）环境**：ComfyUI ≥ 0.30.0，PyTorch 必须 **cu130**（cu128 会静默关掉 int8 快速路径，慢约 3 倍）。
@@ -76,6 +80,7 @@ python main.py --disable-pinned-memory --disable-async-offload --reserve-vram 1
 | 文件 | 内容 |
 |---|---|
 | [`docs/使用指南.md`](docs/使用指南.md) | **主文档**：三条路线对比、决策树、硬门槛、下载清单、安装顺序、参数手册、加速件、排错表 |
+| [`docs/实测-路线B-4070TiSuper16G.md`](docs/实测-路线B-4070TiSuper16G.md) | **单机实测**：路线 B 耗时/显存/内存峰值 + 与社区口径的逐条对照 + 无头（Headless）运行要点 |
 | [`DEVELOPMENT.md`](DEVELOPMENT.md) | 关键问题与方案（一坑一篇，8 条）—— 踩坑先看这里 |
 | [`AGENTS.md`](AGENTS.md) | 给 AI / 未来自己的项目规则与**文档基线** |
 | [`CHANGELOG.md`](CHANGELOG.md) | 版本记录 |
