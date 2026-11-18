@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-11-18 · 文档维护：接入 repo-kit 机器层（link-only）
+
+- `schema/taxonomy.json` + `schema/kit.lock.json`（kit `2.9.0` / 规范 `2.1.4` / `link-only`）+ `tools/repo-kit/check_repo.py`
+- `.github/workflows/repo-check.yml`：md / `schema/**` / `tools/**` 变更时跑链接与锚点检查 + 锁哈希校验
+- 只改文档基建，不动内容；验收 `REPO CHECK: PASS`（ERROR=0、WARN=0）、`KIT LOCK: PASS`
+
 本项目遵循「按版本分节、不拆分」的记录方式（见 `AGENTS.md`）。
 
 ## v0.2.0 · 2026-09-30

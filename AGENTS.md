@@ -28,6 +28,13 @@
 - 隐私红线（公开仓库）：禁止收录凭据、本地绝对路径、个人信息、未公开项目细节
 - 边界：不写绕过内容安全机制的配置 / 提示词 / 思路
 
+## 机器层（repo-kit · link-only）
+
+- `schema/taxonomy.json` + `schema/kit.lock.json`（kit `2.9.0` / 规范 `2.1.4` / `link-only`）+ `tools/repo-kit/check_repo.py`
+- 校验：`python tools/repo-kit/check_repo.py --root .`；锁哈希：`pwsh tools/update-repo-kit.ps1 -Check`
+- 只查**链接与锚点**：全仓 md 豁免 frontmatter（本仓没有 frontmatter 契约）
+- `schema/kit.lock.json` **不要手改**，升级只能跑 `tools/update-repo-kit.ps1`
+
 ## 常用命令
 
 ```bash
